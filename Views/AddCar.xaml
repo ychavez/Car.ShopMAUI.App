@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Car.ShopMAUI.Views.AddCar"
+             Title="Agregar nuevo">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Frame HeightRequest="200" WidthRequest="200" HasShadow="True">
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Frame>
+
+            <Entry x:Name="txtModelo" Placeholder="Modelo" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="txtMarca"  Placeholder="Marca" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="txtAnio" Placeholder="Año" HorizontalOptions="CenterAndExpand" Keyboard="Numeric"/>
+            <Entry x:Name="txtDescripcion" Placeholder="Descripcion" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="txtPrecio" Placeholder="Descripcion" HorizontalOptions="CenterAndExpand" Keyboard="Numeric"/>
+            <Button x:Name="btnAceptar" Text="Agregar" Clicked="Button_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+   
+</ContentPage>
+    
+    

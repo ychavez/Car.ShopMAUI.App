@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Car.ShopMAUI.Views.CarsForSale"
+             Title="Lista de carros">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar" Order="Primary" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Busca ty vehiculo" x:Name="srchVehiculo" TextChanged="srchVehiculo_TextChanged"/>
+            <ListView x:Name="CarsList" RowHeight="100" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--lo que yo ponga aqui se repetira N cantidad de veces con el mismo layout-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width=".8*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding PhotoUrl}" Grid.Column="0" MaximumWidthRequest="100" Margin="10,0,10,0"/>
+                            <VerticalStackLayout MaximumWidthRequest="300" Grid.Column="1">
+                                <Label Text="{Binding Brand}"/>
+                                <Label Text="{Binding Model}"/>
+                                <Label Text="{Binding Description}"/>
+                                <Label Text="{Binding Price, StringFormat='{0:c}'}"/>
+                            </VerticalStackLayout>
+                            <Button Text="Favorito" Grid.Column="2"/>
+                       
+                            </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
