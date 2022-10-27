@@ -30,4 +30,20 @@ public partial class AddCar : ContentPage
 
 
     }
+
+    private async void btnPhoto_Clicked(object sender, EventArgs e)
+    {
+
+        if (MediaPicker.Default.IsCaptureSupported)
+        {
+
+            FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+
+
+            imgCar.Source = ImageSource.FromStream(async x => await photo.OpenReadAsync());
+
+
+        }
+
+    }
 }

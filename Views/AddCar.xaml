@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout>
             <Frame HeightRequest="200" WidthRequest="200" HasShadow="True">
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Image x:Name="imgCar" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Frame>
 
             <Entry x:Name="txtModelo" Placeholder="Modelo" HorizontalOptions="CenterAndExpand"/>
@@ -15,6 +15,7 @@
             <Entry x:Name="txtDescripcion" Placeholder="Descripcion" HorizontalOptions="CenterAndExpand"/>
             <Entry x:Name="txtPrecio" Placeholder="Descripcion" HorizontalOptions="CenterAndExpand" Keyboard="Numeric"/>
             <Button x:Name="btnAceptar" Text="Agregar" Clicked="Button_Clicked"/>
+            <Button x:Name="btnPhoto" Text="Agregar foto" Clicked="btnPhoto_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
    
