@@ -27,5 +27,7 @@ public partial class AddCar : ContentPage
         await Navigation.PopAsync();
 
         MessagingCenter.Send<Page>(this, "UpdateList");
+
+
     }
 }

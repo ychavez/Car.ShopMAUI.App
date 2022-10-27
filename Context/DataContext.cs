@@ -27,22 +27,34 @@ namespace Car.ShopMAUI.Context
 
         public async Task<Cars> GetCarById(int id) 
         {
-
             await Init();
             return await Database.Table<Cars>().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task SetAsFavorite(Cars car) 
+        public async Task<bool> SetAsFavorite(Cars car) 
         {
 
             await Init();
             var _car = await GetCarById(car.Id);
 
             if (_car is not null)
-                return;
+                return false;
 
              await Database.InsertAsync(car);
+            return true;
 
+        }
+
+        public async Task<bool> RemoveFromFavorites(int id) 
+        {
+            await Init();
+
+            var _car = await GetCarById(id);
+
+            if (_car is null)
+                return false;
+
+            return await Database.DeleteAsync(_car) > 0;
         }
 
 

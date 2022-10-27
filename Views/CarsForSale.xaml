@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Car.ShopMAUI.Views.CarsForSale"
              Title="Lista de carros">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Agregar" Order="Primary" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Placeholder="Busca ty vehiculo" x:Name="srchVehiculo" TextChanged="srchVehiculo_TextChanged"/>
+            <SearchBar Placeholder="Busca tu vehiculo" x:Name="srchVehiculo" TextChanged="srchVehiculo_TextChanged" FontSize="16" FontAttributes="Bold"/>
             <ListView x:Name="CarsList" RowHeight="100" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -20,14 +25,15 @@
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width=".8*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding PhotoUrl}" Grid.Column="0" MaximumWidthRequest="100" Margin="10,0,10,0"/>
+                                <Image Source="{Binding PhotoUrl}" Grid.Column="0" MaximumWidthRequest="100"
+                                       Margin="10,0,10,0"/>
                             <VerticalStackLayout MaximumWidthRequest="300" Grid.Column="1">
-                                <Label Text="{Binding Brand}"/>
-                                <Label Text="{Binding Model}"/>
+                                <Label Text="{Binding Brand}" FontSize="18" FontAttributes="None"/>
+                                    <Label Text="{Binding Model}" FontSize="16"  />
                                 <Label Text="{Binding Description}"/>
-                                <Label Text="{Binding Price, StringFormat='{0:c}'}"/>
+                                <Label Text="{Binding Price, StringFormat='{0:c}'}"  TextDecorations="Underline"  />
                             </VerticalStackLayout>
-                            <Button Text="Favorito" Grid.Column="2"/>
+                                <ImageButton x:Name="btnFavorito" class="btnFavorito" Grid.Column="2" Source="star.png"  Clicked="Button_Clicked"/>
                        
                             </Grid>
                     </ViewCell>

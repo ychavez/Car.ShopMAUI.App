@@ -8,6 +8,7 @@ namespace Car.ShopMAUI
         public MainTabbedPage()
         {
             Children.Add(new CarsForSale());
+            Children.Add(new FavoriteCars());
      
         }
 
