@@ -12,6 +12,14 @@ public partial class AddCar : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
+        await NewCar();
+
+    }
+
+    private async Task NewCar()
+    {
+        Location location = await Geolocation.Default.GetLocationAsync();
+
         var car = new Cars
         {
             Brand = txtMarca.Text,
@@ -19,16 +27,20 @@ public partial class AddCar : ContentPage
             Model = txtModelo.Text,
             Year = int.Parse(txtAnio.Text),
             Price = decimal.Parse(txtPrecio.Text),
-            PhotoUrl = "https://cdn1.coppel.com/images/catalog/pr/7278682-1.jpg"
+            PhotoUrl = "https://cdn1.coppel.com/images/catalog/pr/7278682-1.jpg",
+            Lat = location.Latitude,
+            Lon = location.Longitude
+
         };
+
+
+
 
         new RestService().SetCar(car);
         await DisplayAlert("Agregado", "El auto se agrego correctamente", "OK");
         await Navigation.PopAsync();
 
         MessagingCenter.Send<Page>(this, "UpdateList");
-
-
     }
 
     private async void btnPhoto_Clicked(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Car.ShopMAUI.Context;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Car.ShopMAUI;
 
@@ -9,6 +10,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseSkiaSharp()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
