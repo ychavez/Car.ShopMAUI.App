@@ -1,9 +1,9 @@
 namespace Car.ShopMAUI.Views;
 
+using Car.ShopMAUI.Context;
 using Mapsui.Tiling;
 using Mapsui.UI.Maui;
-using Microsoft.Maui.Devices.Sensors;
-using System.Linq.Expressions;
+
 using Map = Mapsui.Map;
 
 public class MapCars : ContentPage
@@ -17,8 +17,10 @@ public class MapCars : ContentPage
         map.Layers.Add(OpenStreetMap.CreateTileLayer());
         view.IsNorthingButtonVisible = true;
         view.IsEnabled = true;
-
-        view.PinClicked += (sender, args) => DisplayAlert("", $"{args.Point.Latitude}  {args.Point.Longitude}", "Ok");
+        view.MyLocationFollow = true;
+        view.MyLocationEnabled = true;
+        view.IsMyLocationButtonVisible = true;
+        view.PinClicked += (sender, args) => DisplayAlert("", $"{args.Pin.Label} ", "Ok");
 
         view.Map = map;
 
@@ -28,17 +30,24 @@ public class MapCars : ContentPage
 
     protected override async void OnAppearing()
     {
-        Location location = await Geolocation.Default.GetLocationAsync();
+        RestService dataContext = new();
 
-        var pin = new Pin(view)
+        //Location location = await Geolocation.Default.GetLocationAsync();
+
+        var cars = dataContext.GetCars().Where(x => x.Lat is not null && x.Lon is not null).ToList();
+
+        foreach (var car in cars)
         {
-            Type = PinType.Pin,
-            Label = "Un carro",
-            Position = new Position(location.Latitude, location.Longitude)
-        };
+            var pin = new Pin(view)
+            {
+                Type = PinType.Pin,
+                Label = $"{car.Description}  {car.Price.ToString("C2")}",
+                Position = new Position((double)car.Lat, (double)car.Lon),
+                
+            };
 
-        view.Pins.Add(pin);
-
+            view.Pins.Add(pin);
+        }
         base.OnAppearing();
     }
 }
