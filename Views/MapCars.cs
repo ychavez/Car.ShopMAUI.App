@@ -26,6 +26,8 @@ public class MapCars : ContentPage
 
         Content = view;
 
+        Title = "Mapa";
+
     }
 
     protected override async void OnAppearing()

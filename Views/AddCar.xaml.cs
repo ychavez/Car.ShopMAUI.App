@@ -37,7 +37,13 @@ public partial class AddCar : ContentPage
 
 
         new RestService().SetCar(car);
-        await DisplayAlert("Agregado", "El auto se agrego correctamente", "OK");
+        /// await DisplayAlert("Agregado", "El auto se agrego correctamente", "OK");
+        await TextToSpeech.SpeakAsync($"{car.Brand}, {car.Model}, agregado correctamente!");
+
+        //  await Flashlight.Default.TurnOnAsync();
+        //Vibration.Default.Vibrate(10)
+
+
         await Navigation.PopAsync();
 
         MessagingCenter.Send<Page>(this, "UpdateList");
@@ -49,7 +55,24 @@ public partial class AddCar : ContentPage
         if (MediaPicker.Default.IsCaptureSupported)
         {
 
-            FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+            //  bool answer = await DisplayAlert("Pregunta", "Esto es una pregunta?", "Si", "No");
+            // accion de si o no dependiento de ok o cancelar
+
+
+            string action = await DisplayActionSheet("Cual deberia tomar", "Cancelar", "Ok", "Foto", "Tomar de la galeria");
+            /// este nos deja seleccionar de una lista de acciones y nos trgresa un string
+
+
+            // string name = await DisplayPromptAsync("Titulo", "Escribe tu nombre");
+            // nos regresa lo capturado por el usuario
+
+
+            FileResult photo;
+            if (action == "Foto")
+
+                photo = await MediaPicker.Default.CapturePhotoAsync();
+            else
+                photo = await MediaPicker.Default.PickPhotoAsync();
 
 
             imgCar.Source = ImageSource.FromStream(async x => await photo.OpenReadAsync());
